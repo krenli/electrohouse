@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>
+            ELECTROHOUSE
+        </title>
+    
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut  icon" href="favicon.ico" >
+        <link rel="icon" type="image/gif" href="img/4.jpg" >
+        <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    </head>
+    
+    <body style="background-image: url('img/electro.jpg'); width: 100%;height: 100px; background-repeat:  no-repeat">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid bg-info" style="background-color: #cccccc">
+             <div class="navbar-header">
+                 
+                    <a class="navbar-brand" href="menu.html">ELECTROHOUSE</a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+                   
+               <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul id="menuPrincipal" class="nav navbar-nav">
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color: black">
+                                <span>Opciones</span><span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                
+                               <li><a href="frm/referenciales/cambiarclave">Cambiar Clave<span class="glyphicon glyphicon-key-rounded"></span></a></li>
+                                <li><a href="ayuda/html/electrohouse.html"><span class="glyphicon glyphicon-speech-bubble-info"></span>Ayuda</a></li>
+                               <li class="divider"></li>
+                                <li><a href="index.html"><span class="glyphicon glyphicon-door"></span>Cerrar Sesión</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+                </div>
+            </div>
+        </nav>
+         <div class="panel-body">
+
+           
+
+        </div>
+         <div class="row">
+            <div class="col col-md-4">
+                
+            </div>
+                 <!--<div class="col col-md-4 container-fluid bg-primary" style="background-color: #cccccc" >
+                    <div class="panel-heading centrado">Electrohouse</div>
+                    <p class="centrado">Sistema de Gestion Comercial</p>
+                </div>-->
+            <div class="col col-md-4">
+                
+            </div>
+        </div>
+        <div id="mensajes" class="well well-sm centrado">Mensajes del sistema</div>
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/funciones.js" type="text/javascript"></script>
+        <script>
+            verificarSesion();
+            generarMenuPrincipal();
+        </script>
+         <div align="center">
+            
+        
+         <link href='https://fonts.googleapis.com/css?family=Cabin+Condensed:700' rel='stylesheet' type='text/css'>
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="650px" height="240px" xml:space="preserve">
+  <defs>
+    <pattern id="water" width=".25" height="1.1" patternContentUnits="objectBoundingBox">
+      <path fill="#000" d="M0.25,1H0c0,0,0-0.659,0-0.916c0.083-0.303,0.158,0.334,0.25,0C0.25,0.327,0.25,1,0.25,1z"/>
+    </pattern>
+    
+    <text id="text" transform="translate(2,116)" font-family="'Verdana'" font-size="81.047">ELECTROHOUSE</text>
+    
+    <mask id="text-mask">
+      <use x="0" y="0" xlink:href="#text" opacity="5" fill="#ffffff"/>
+    </mask>
+    
+    <g id="eff">
+      <use x="0" y="0" xlink:href="#text" fill="lightblue"/>
+  
+  <rect class="water-fill" mask="url(#text-mask)" fill="url(#water)" x="-300" y="50" width="1200" height="120" opacity="0.3">
+    <animate attributeType="xml" attributeName="x" from="-300" to="0" repeatCount="indefinite" dur="2s"/>
+  </rect>
+   <rect class="water-fill" mask="url(#text-mask)" fill="url(#water)" y="45" width="1600" height="120" opacity="0.3">
+    <animate attributeType="xml" attributeName="x" from="-400" to="0" repeatCount="indefinite" dur="3s"/>
+  </rect>
+      
+  <rect class="water-fill" mask="url(#text-mask)" fill="url(#water)" y="55" width="800" height="120" opacity="0.3">
+    <animate attributeType="xml" attributeName="x" from="-200" to="0" repeatCount="indefinite" dur="1.4s"/>
+  </rect>
+      <rect class="water-fill" mask="url(#text-mask)" fill="url(#water)" y="55" width="2000" height="120" opacity="0.3">
+    <animate attributeType="xml" attributeName="x" from="-500" to="0" repeatCount="indefinite" dur="2.8s"/>
+  </rect>
+    </g>
+  </defs>
+ 
+	  <use xlink:href="#eff" opacity="0.9" style="mix-blend-mode:color-burn"/>
+
+</svg>
+
+ </div>  
+    </body>
+</html>

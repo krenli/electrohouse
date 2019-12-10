@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="prueba" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b7c8da89-5ff9-480d-b9fd-302f062f1d02">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="desde" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT *
+
+
+
+ from factura_ventas fv left join clientes c
+
+on fv.idcliente=c.idcliente
+left join factura_detalle_ventas fdv
+on  fv.idfactura_venta=fdv.idfactura_venta
+left join productos a on
+a.idproducto=fdv.idproducto
+left join timbrados t on
+t.idtimbrado=fv.idtimbrado
+left join tipo_facturas tf on
+fv.idtipo_factura=tf.idtipo_factura
+
+where fv.idfactura_venta=$P{desde}]]>
+	</queryString>
+	<field name="idfactura_venta" class="java.lang.Integer"/>
+	<field name="idcliente" class="java.lang.Integer"/>
+	<field name="fecha_factura_venta" class="java.sql.Date"/>
+	<field name="idtipo_factura" class="java.lang.Integer"/>
+	<field name="cantidad_cuotas" class="java.lang.Integer"/>
+	<field name="numero_factura_venta" class="java.lang.Integer"/>
+	<field name="estado_venta" class="java.lang.String"/>
+	<field name="idtimbrado" class="java.lang.Integer"/>
+	<field name="idusuario" class="java.lang.Integer"/>
+	<field name="nombre_cliente" class="java.lang.String"/>
+	<field name="apellido_cliente" class="java.lang.String"/>
+	<field name="ruc_cliente" class="java.lang.String"/>
+	<field name="telefono_cliente" class="java.lang.String"/>
+	<field name="fecha_nac_cliente" class="java.sql.Date"/>
+	<field name="direccion_cliente" class="java.lang.String"/>
+	<field name="idciudad" class="java.lang.Integer"/>
+	<field name="idestadocivil" class="java.lang.Integer"/>
+	<field name="idfactura_detalle_venta" class="java.lang.Integer"/>
+	<field name="idproducto" class="java.lang.Integer"/>
+	<field name="cantidad_venta" class="java.lang.Integer"/>
+	<field name="nombre_producto" class="java.lang.String"/>
+	<field name="cod_barras_producto" class="java.lang.String"/>
+	<field name="costo_producto" class="java.lang.Integer"/>
+	<field name="precio_producto" class="java.lang.Integer"/>
+	<field name="minimo_producto" class="java.lang.Integer"/>
+	<field name="iva_producto" class="java.lang.Integer"/>
+	<field name="idfamilia" class="java.lang.Integer"/>
+	<field name="idmarca" class="java.lang.Integer"/>
+	<field name="numero_timbrado" class="java.lang.String"/>
+	<field name="fecha_inicio_timbrado" class="java.sql.Date"/>
+	<field name="fecha_vencimiento_timbrado" class="java.sql.Date"/>
+	<field name="desde_timbrado" class="java.lang.Integer"/>
+	<field name="hasta_timbrado" class="java.lang.Integer"/>
+	<field name="estado_timbrado" class="java.lang.String"/>
+	<field name="idtipo_personal" class="java.lang.Integer"/>
+	<field name="nombre_tipo_factura" class="java.lang.String"/>
+	<variable name="exenta" class="java.lang.Integer">
+		<variableExpression><![CDATA[( $F{iva_producto} != 0 ?
+ + 0 : $F{precio_producto}*$F{cantidad_venta} )]]></variableExpression>
+	</variable>
+	<variable name="iva10" class="java.lang.Integer">
+		<variableExpression><![CDATA[( $F{iva_producto} != 10 ?
+ + 0 : $F{precio_producto}*$F{cantidad_venta} )]]></variableExpression>
+	</variable>
+	<variable name="iva5" class="java.lang.Integer">
+		<variableExpression><![CDATA[( $F{iva_producto} != 5 ?
+ + 0 : $F{precio_producto}*$F{cantidad_venta} )]]></variableExpression>
+	</variable>
+	<variable name="totalexenta" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$V{exenta}]]></variableExpression>
+	</variable>
+	<variable name="total5" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$V{iva5}]]></variableExpression>
+	</variable>
+	<variable name="total10" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$V{iva10}]]></variableExpression>
+	</variable>
+	<variable name="total" class="java.lang.Integer">
+		<variableExpression><![CDATA[$V{totalexenta}+$V{total5}+$V{total10}]]></variableExpression>
+	</variable>
+	<variable name="sub5" class="java.lang.Integer">
+		<variableExpression><![CDATA[$V{total5}/21]]></variableExpression>
+	</variable>
+	<variable name="sub10" class="java.lang.Integer">
+		<variableExpression><![CDATA[$V{total10}/11]]></variableExpression>
+	</variable>
+	<variable name="totaliva" class="java.lang.Integer">
+		<variableExpression><![CDATA[$V{sub5}+$V{sub10}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="102" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="47" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="41" width="100" height="20" uuid="5734172a-3146-4270-af89-375f695a6ff5"/>
+				<text><![CDATA[nombre_producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="41" width="100" height="20" uuid="18adbafe-57f0-4c66-83e7-c83bc4978579"/>
+				<text><![CDATA[cantidad_venta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="41" width="100" height="20" uuid="f7cadfb1-f691-44f6-bb71-f64c06a81dac"/>
+				<text><![CDATA[precio_producto]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="f2475538-a956-4a93-8f1d-c7c05d31e475"/>
+				<textFieldExpression><![CDATA[$F{nombre_producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="2" width="100" height="20" uuid="1fc59cb6-9834-4226-a411-b2681a29223a"/>
+				<textFieldExpression><![CDATA[$F{cantidad_venta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="2" width="100" height="20" uuid="305c3488-61bf-461b-826c-005f7a0ae8bf"/>
+				<textFieldExpression><![CDATA[$F{precio_producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="303" y="2" width="71" height="20" uuid="4d1406eb-1657-40ed-b855-b5ef087d6ce2"/>
+				<textFieldExpression><![CDATA[$V{exenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="489" y="2" width="66" height="20" uuid="b20ae87d-5f32-4291-8e68-5618270e5b88"/>
+				<textFieldExpression><![CDATA[$V{iva10}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="374" y="2" width="100" height="20" uuid="e40a3709-2981-42ae-8119-1fdd7da5e0b0"/>
+				<textFieldExpression><![CDATA[$V{iva5}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="300" y="0" width="74" height="20" uuid="bd73c654-6593-411e-8c58-70052d2971b7"/>
+				<textFieldExpression><![CDATA[$V{totalexenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="374" y="0" width="100" height="20" uuid="da61c711-ced7-4168-8328-3171b7ba072e"/>
+				<textFieldExpression><![CDATA[$V{total5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="474" y="0" width="81" height="20" uuid="e89578ca-5474-4b8d-8467-93d110ccbf3f"/>
+				<textFieldExpression><![CDATA[$V{total10}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="20" width="100" height="20" uuid="fa32eb19-8016-40c0-af46-b84e22990749"/>
+				<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="72687b50-3ede-4438-9922-4b2b44843d3a"/>
+				<textFieldExpression><![CDATA[$V{sub5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="25f8c250-da24-41b9-8670-42caed68f6d1"/>
+				<textFieldExpression><![CDATA[$V{sub10}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="203" y="0" width="100" height="20" uuid="a4c05fdf-9a5d-426d-869a-5f589c041fae"/>
+				<textFieldExpression><![CDATA[$V{totaliva}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

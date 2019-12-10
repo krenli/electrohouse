@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="recibo" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="01388ed9-4dd5-4f1c-937d-31aa6458ac8b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="DESDE" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HASTA" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from factura_ventas fv left join clientes c
+on fv.idcliente=c.idcliente
+left join factura_detalle_ventas fdv
+on  fv.idfactura_venta=fdv.idfactura_venta
+left join productos a on
+a.idproducto=fdv.idproducto
+left join timbrados t on
+t.idtimbrado=fv.idtimbrado
+left join cuentas ct on
+ct.idfactura_venta=fv.idfactura_venta
+left join detallescuentas dc on
+ct.idcuenta=dc.idcuenta
+left join recibos r on
+r.idcuenta=ct.idcuenta,
+
+CONCAT(c."nombre_cliente",' ',c."apellido_cliente") AS cliente
+
+where dc.idcuenta= $P{DESDE} and dc.nro_cuota= $P{HASTA}  group by fv.idfactura_venta, c.idcliente, fdv.idfactura_detalle_venta, a.idproducto, t.idtimbrado, ct.idcuenta,dc.iddetallecuenta, r.idrecibo, cliente.cliente]]>
+	</queryString>
+	<field name="idfactura_venta" class="java.lang.Integer"/>
+	<field name="idcliente" class="java.lang.Integer"/>
+	<field name="fecha_factura_venta" class="java.sql.Date"/>
+	<field name="idtipo_factura" class="java.lang.Integer"/>
+	<field name="cantidad_cuotas" class="java.lang.Integer"/>
+	<field name="numero_factura_venta" class="java.lang.Integer"/>
+	<field name="estado_venta" class="java.lang.String"/>
+	<field name="idtimbrado" class="java.lang.Integer"/>
+	<field name="idusuario" class="java.lang.Integer"/>
+	<field name="nombre_cliente" class="java.lang.String"/>
+	<field name="apellido_cliente" class="java.lang.String"/>
+	<field name="ruc_cliente" class="java.lang.String"/>
+	<field name="telefono_cliente" class="java.lang.String"/>
+	<field name="fecha_nac_cliente" class="java.sql.Date"/>
+	<field name="direccion_cliente" class="java.lang.String"/>
+	<field name="idciudad" class="java.lang.Integer"/>
+	<field name="idestadocivil" class="java.lang.Integer"/>
+	<field name="idfactura_detalle_venta" class="java.lang.Integer"/>
+	<field name="idproducto" class="java.lang.Integer"/>
+	<field name="cantidad_venta" class="java.lang.Integer"/>
+	<field name="nombre_producto" class="java.lang.String"/>
+	<field name="cod_barras_producto" class="java.lang.String"/>
+	<field name="costo_producto" class="java.lang.Integer"/>
+	<field name="precio_producto" class="java.lang.Integer"/>
+	<field name="minimo_producto" class="java.lang.Integer"/>
+	<field name="iva_producto" class="java.lang.Integer"/>
+	<field name="idfamilia" class="java.lang.Integer"/>
+	<field name="idmarca" class="java.lang.Integer"/>
+	<field name="numero_timbrado" class="java.lang.String"/>
+	<field name="fecha_inicio_timbrado" class="java.sql.Date"/>
+	<field name="fecha_vencimiento_timbrado" class="java.sql.Date"/>
+	<field name="desde_timbrado" class="java.lang.Integer"/>
+	<field name="hasta_timbrado" class="java.lang.Integer"/>
+	<field name="estado_timbrado" class="java.lang.String"/>
+	<field name="idtipo_personal" class="java.lang.Integer"/>
+	<field name="idcuenta" class="java.lang.Integer"/>
+	<field name="monto_total" class="java.lang.Integer"/>
+	<field name="estado_cuenta" class="java.lang.String"/>
+	<field name="total_cuota" class="java.lang.Integer"/>
+	<field name="iddetallecuenta" class="java.lang.Integer"/>
+	<field name="nro_cuota" class="java.lang.Integer"/>
+	<field name="vencimiento_cuota" class="java.sql.Date"/>
+	<field name="monto_cuota" class="java.lang.Integer"/>
+	<field name="estado_cuota" class="java.lang.String"/>
+	<field name="idrecibo" class="java.lang.Integer"/>
+	<field name="montoenletras" class="java.lang.String"/>
+	<field name="cliente" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="155" splitType="Stretch">
+			<rectangle>
+				<reportElement x="10" y="22" width="335" height="100" uuid="c0cf9a01-ca14-406c-9b7d-d7e17cb5fded"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="103" y="74" width="229" height="20" uuid="63208903-20cd-410d-9783-2f9cff260750"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[electrohouse@gmail.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="103" y="94" width="229" height="20" uuid="ecb3fee8-d104-48d6-a44d-0b1af68c991d"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Cel.: 0987-321.533]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="103" y="54" width="229" height="20" uuid="df67314f-1b91-4950-ad9d-7bc31361bd15"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Avda. Pedro López Godoy casi Petirossi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="103" y="34" width="229" height="20" uuid="fe39153b-c6f9-40a4-a112-1f91bfb64a97"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ELECTRO HOUSE - ELECTRODOMÉSTICOS]]></text>
+			</staticText>
+			<image>
+				<reportElement x="20" y="30" width="83" height="84" uuid="f19761d5-918d-41bd-bdd2-d6c7e98e6c89"/>
+				<imageExpression><![CDATA[".\\electrohouse.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="386" y="22" width="19" height="20" uuid="26f038f7-818d-4c50-a64b-71fb01be7a2c"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[N°.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="110" width="48" height="33" uuid="f70f3b07-6ef9-4b41-9b09-826ea6786862"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gs.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="364" y="72" width="181" height="30" uuid="847fac7f-e869-4f7a-a743-4aa2a7f177c4"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECIBO DE DINERO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="386" y="52" width="43" height="20" uuid="1b51fcd9-74a3-4d1b-b954-9092ce18bca8"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[R.U.C.:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="405" y="110" width="139" height="23" backcolor="#CCCCCC" uuid="d0a4b03f-1b23-4beb-8866-c031e1edb994"/>
+			</rectangle>
+			<textField>
+				<reportElement x="416" y="22" width="94" height="20" uuid="83a801dd-6a44-48c0-a1fd-208df04977b6"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_timbrado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="405" y="113" width="139" height="20" uuid="861d3827-e5fc-45ca-b0dc-ff518c6b471c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{monto_cuota}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="430" y="52" width="100" height="20" uuid="c10f7c10-00e1-4cd4-aac0-4c7f9879998f"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[80073178-6]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="291" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="13" width="119" height="20" uuid="974a4572-ef99-432d-b513-2d4bd2cd20d4"/>
+				<textElement>
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Recibi(mos) de :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="118" y="32" width="268" height="1" uuid="9ee07330-917d-4b3b-947b-22e149d33a80"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="386" y="13" width="43" height="20" uuid="04366196-4457-47e4-869e-3d0552212db2"/>
+				<textElement>
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[RUC:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="416" y="31" width="129" height="1" uuid="ed44d2a8-3c4c-4c79-b653-c531610f202c"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="10" y="50" width="167" height="20" uuid="664ecb50-df68-44e5-b3e0-61767da1ccc5"/>
+				<textElement>
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[La cantidad de guaraníes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="155" width="119" height="20" uuid="0f41d76a-8949-47bc-9f97-fae24e84db8d"/>
+				<textElement>
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Por concepto de]]></text>
+			</staticText>
+			<line>
+				<reportElement x="118" y="174" width="426" height="1" uuid="9e628967-75a2-4fa6-a899-1075fbb64c10"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="10" y="205" width="534" height="1" uuid="c00410bd-0f68-4190-ad8b-1f0acab49816"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="167" y="139" width="377" height="1" uuid="33cd2189-6859-48f1-936f-5d2efd6a652d"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="10" y="120" width="180" height="20" uuid="6ac13277-0eda-4a3b-84a7-fe2583ae335e"/>
+				<textElement>
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[En efectivo / Cheque N°]]></text>
+			</staticText>
+			<line>
+				<reportElement x="297" y="256" width="223" height="1" uuid="516e0725-0de5-47a3-bcac-d703686047da"/>
+			</line>
+			<staticText>
+				<reportElement x="86" y="265" width="104" height="20" uuid="fc594506-953b-43c1-9c2a-466c0d118b5f"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lugar - Fecha]]></text>
+			</staticText>
+			<line>
+				<reportElement x="20" y="257" width="225" height="1" uuid="1b233e52-4e5a-4db6-adc2-811b13e55386"/>
+			</line>
+			<staticText>
+				<reportElement x="386" y="265" width="44" height="20" uuid="4e0a9a6a-7f83-423d-afd0-a37dfcf7e4b8"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FIrma]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="177" y="47" width="367" height="23" backcolor="#CCCCCC" uuid="e8e1ed6b-467e-4dd3-8a35-f1b7f0c40ada"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="11" y="84" width="534" height="23" backcolor="#CCCCCC" uuid="75e69aed-98af-4128-ac37-6c92a012fd8e"/>
+			</rectangle>
+			<textField>
+				<reportElement x="118" y="11" width="268" height="20" uuid="2a488856-b45b-4a7d-85c7-000d1a20f88f"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="429" y="11" width="115" height="20" uuid="b8e6ef6c-1467-4183-a863-f380ae7c7360"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ruc_cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="50" width="354" height="20" uuid="8638eecb-e811-42d3-9879-73aa6609d356"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{montoenletras}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="245" y="155" width="76" height="20" uuid="edd88b46-483e-48e8-8d7b-2159b751e723"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[de factura N°]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="129" y="155" width="98" height="20" uuid="bda3dcd0-34f9-4ca3-a518-02e1976c93e5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Pago de cuota N°]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="227" y="155" width="18" height="20" uuid="c8419cbc-adf3-4350-ade9-6328503afd36"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nro_cuota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="316" y="155" width="16" height="20" uuid="5eaf98d1-2b1f-41d1-b811-fdee4b6370f8"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{idciudad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="332" y="155" width="19" height="20" uuid="a8a3e77d-4a6d-46bd-b049-4bf721a9c0f3"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="351" y="155" width="23" height="20" uuid="74af11d3-5af9-4aa4-a2be-d7fac441470c"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{idtimbrado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="374" y="155" width="19" height="20" uuid="240567bf-09c1-4249-a3ab-5b06d070fb22"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="393" y="154" width="100" height="20" uuid="c91946d5-b2db-40fd-b667-841c3031cb4d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{numero_factura_venta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="23" y="236" width="56" height="20" uuid="9266525f-c59b-403e-bfa9-d4dd7c9f2eed"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Capiatá,]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="79" y="236" width="166" height="20" uuid="769ceaeb-e3f5-4025-800b-dafa83e6d8c5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

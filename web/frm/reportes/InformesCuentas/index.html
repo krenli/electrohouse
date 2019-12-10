@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Informes Cuentas</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" >
+        <link rel="icon" type="image/gif" href="../../../img/4.jpg" >
+        <link href="../../../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../css/miestilos.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body style="background-image: url('../../../img/electro.jpg'); width: 100%;height: 100px; background-repeat:  no-repeat">
+        <br>
+        
+        <div id="panelPrograma" class="panel panel-primary">
+            <div class="panel-heading centrado">Informes de Cuentas </div>
+            <div class="panel-body">
+                <form id="formPrograma">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span>Listados</span>
+                        </div>
+                        <div class="col-md-2">
+                            <select id="listado" class="form-control">
+
+                                <option value="estadocuenta">Estado de Cuentas</option>
+                                <option value="deudasporcliente">Deudas por Cliente</option>
+
+                            </select>
+                        </div>
+                        <div class="col-md-8">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span>Estado o RUC/CI</span>
+                        </div>
+                        <div class="col-md-2">
+                            <input id="desde_id" name="desde_id" type="text" class="form-control input-sm" placeholder="parametro" onkeyup="this.value = this.value.toUpperCase()">
+                        </div>
+                        <div class="col-md-8">
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+            <div class="panel-footer centrado">
+                <button id="botonImprimir" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print"></span> Imprimir</button>
+                <button id="botonSalir" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-share-alt"></span>Salir</button>
+            </div>
+        </div>
+        <div id="mensajes" class="well well-sm centrado">Mensajes del Sistema.</div>
+        <script src="../../../js/jquery.min.js" type="text/javascript"></script>
+        <script src="../../../js/bootstrap.min.js" type="text/javascript"></script>
+        <script>
+            //verificarSesion(true);
+            $("#desde_id").focus();
+            //siguienteCampo("#desde_id", "#hasta_id", false);
+            $("#botonImprimir").on('click', function () {
+                /*if ($("#desde_id").val() === "" || $("#desde_id").val() === "0") {
+                    $("#mensajes").html("Desde no puede estar vacio.");
+                } else {
+                    if ($("#hasta_id").val() === "" || $("#hasta_id").val() === "0") {
+                        $("#mensajes").html("Hasta no puede estar vacio.");
+                    } else {
+                        var l = $("#listado").val();
+                        var d = $("#desde_id").val();
+                        var h = $("#hasta_id").val();
+                        var jsp = "jsp/tablas.jsp";
+                        window.open(jsp + "?l=" + l + "&d=" + d + "&h=" + h);
+                    }
+                }*/
+                var l = $("#listado").val();
+                        var d = $("#desde_id").val();
+                        //var h = $("#hasta_id").val();
+                        var jsp = "jsp/tablas.jsp";
+                        window.open(jsp + "?l=" + l + "&d=" + d);
+            });
+            $("#botonSalir").on('click', function () {
+                location.href = "../../../menu.html";
+            });
+        </script>
+
+    </body>
+</html>

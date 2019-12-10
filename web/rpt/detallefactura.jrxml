@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="detallefactura" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0039cc56-a06a-42a5-b25d-5bd365d5b7e9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="desde" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="totalexcenta" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[$V{totalexentas_3}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select cantidad_venta,nombre_producto,precio_producto,(cantidad_venta*precio_producto)as totalexentas, iva_producto from factura_detalle_ventas,productos
+where factura_detalle_ventas.idproducto=productos.idproducto
+and iva_producto=0
+and idfactura_venta=$P{desde}]]>
+	</queryString>
+	<field name="cantidad_venta" class="java.lang.Integer"/>
+	<field name="nombre_producto" class="java.lang.String"/>
+	<field name="precio_producto" class="java.lang.Integer"/>
+	<field name="totalexentas" class="java.lang.Integer"/>
+	<field name="iva_producto" class="java.lang.Integer"/>
+	<variable name="totalexentas_3" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalexentas}]]></variableExpression>
+	</variable>
+	<variable name="totalexenta" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$V{totalexentas_3}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="447" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="0" width="82" height="20" uuid="41b16a84-8bad-435e-a344-c45d6fa1e4a2"/>
+				<textFieldExpression><![CDATA[$F{cantidad_venta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="84" y="0" width="183" height="20" uuid="9a7ef7de-5a2d-416c-9822-d004e7e8b87b"/>
+				<textFieldExpression><![CDATA[$F{nombre_producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="0" width="82" height="20" uuid="7e4165c4-a0d1-41c9-aa3f-6c15924ea41f"/>
+				<textFieldExpression><![CDATA[$F{precio_producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="349" y="0" width="70" height="20" uuid="beba614c-d11e-4ff7-aedc-3d95763ef0ce"/>
+				<textFieldExpression><![CDATA[$F{totalexentas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="349" y="378" width="70" height="20" uuid="60b3ab90-3cd2-496b-b021-b2482f074529"/>
+				<textFieldExpression><![CDATA[$V{totalexentas_3}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

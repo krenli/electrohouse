@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pagare" language="groovy" pageWidth="700" pageHeight="842" columnWidth="660" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e68fe6a1-039b-4889-b3c0-56e6675d8a6a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="DESDE" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HASTA" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * , sum(precio_producto* cantidad_venta) as total from factura_ventas fv left join clientes c
+on fv.idcliente=c.idcliente
+left join factura_detalle_ventas fdv
+on  fv.idfactura_venta=fdv.idfactura_venta
+left join productos a on
+a.idproducto=fdv.idproducto
+left join timbrados t on
+t.idtimbrado=fv.idtimbrado
+left join tipo_facturas tf on
+fv.idtipo_factura=tf.idtipo_factura
+left join cuentas ct on
+ct.idfactura_venta=fv.idfactura_venta
+left join detallescuentas dc on
+dc.idcuenta=ct.idcuenta
+left join pagares pg on
+pg.idfactura_venta=fv.idfactura_venta,
+
+CONCAT(c."nombre_cliente",' ',c."apellido_cliente") AS cliente
+
+where fv.idfactura_venta= $P{DESDE} and nro_cuota = $P{HASTA} group by fv.idfactura_venta, c.idcliente, fdv.idfactura_detalle_venta, a.idproducto, t.idtimbrado,tf.idtipo_factura, ct.idcuenta, dc.iddetallecuenta, pg.idpagare, cliente.cliente]]>
+	</queryString>
+	<field name="idfactura_venta" class="java.lang.Integer"/>
+	<field name="idcliente" class="java.lang.Integer"/>
+	<field name="fecha_factura_venta" class="java.sql.Date"/>
+	<field name="idtipo_factura" class="java.lang.Integer"/>
+	<field name="cantidad_cuotas" class="java.lang.Integer"/>
+	<field name="numero_factura_venta" class="java.lang.Integer"/>
+	<field name="estado_venta" class="java.lang.String"/>
+	<field name="idtimbrado" class="java.lang.Integer"/>
+	<field name="idusuario" class="java.lang.Integer"/>
+	<field name="nombre_cliente" class="java.lang.String"/>
+	<field name="apellido_cliente" class="java.lang.String"/>
+	<field name="ruc_cliente" class="java.lang.String"/>
+	<field name="telefono_cliente" class="java.lang.String"/>
+	<field name="fecha_nac_cliente" class="java.sql.Date"/>
+	<field name="direccion_cliente" class="java.lang.String"/>
+	<field name="idciudad" class="java.lang.Integer"/>
+	<field name="idestadocivil" class="java.lang.Integer"/>
+	<field name="idfactura_detalle_venta" class="java.lang.Integer"/>
+	<field name="idproducto" class="java.lang.Integer"/>
+	<field name="cantidad_venta" class="java.lang.Integer"/>
+	<field name="nombre_producto" class="java.lang.String"/>
+	<field name="cod_barras_producto" class="java.lang.String"/>
+	<field name="costo_producto" class="java.lang.Integer"/>
+	<field name="precio_producto" class="java.lang.Integer"/>
+	<field name="minimo_producto" class="java.lang.Integer"/>
+	<field name="iva_producto" class="java.lang.Integer"/>
+	<field name="idfamilia" class="java.lang.Integer"/>
+	<field name="idmarca" class="java.lang.Integer"/>
+	<field name="numero_timbrado" class="java.lang.String"/>
+	<field name="fecha_inicio_timbrado" class="java.sql.Date"/>
+	<field name="fecha_vencimiento_timbrado" class="java.sql.Date"/>
+	<field name="desde_timbrado" class="java.lang.Integer"/>
+	<field name="hasta_timbrado" class="java.lang.Integer"/>
+	<field name="estado_timbrado" class="java.lang.String"/>
+	<field name="idtipo_personal" class="java.lang.Integer"/>
+	<field name="nombre_tipo_factura" class="java.lang.String"/>
+	<field name="idcuenta" class="java.lang.Integer"/>
+	<field name="monto_total" class="java.lang.Integer"/>
+	<field name="estado_cuenta" class="java.lang.String"/>
+	<field name="total_cuota" class="java.lang.Integer"/>
+	<field name="iddetallecuenta" class="java.lang.Integer"/>
+	<field name="nro_cuota" class="java.lang.Integer"/>
+	<field name="vencimiento_cuota" class="java.sql.Date"/>
+	<field name="monto_cuota" class="java.lang.Integer"/>
+	<field name="estado_cuota" class="java.lang.String"/>
+	<field name="idpagare" class="java.lang.Integer"/>
+	<field name="montoenletras" class="java.lang.String"/>
+	<field name="cliente" class="java.lang.String"/>
+	<field name="total" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="118" splitType="Stretch">
+			<staticText>
+				<reportElement x="256" y="11" width="165" height="20" uuid="fdd8c6e7-da1d-4305-aace-1bdbee678493"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PAGARE A LA ORDEN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="11" width="19" height="20" uuid="d3235616-a56a-49e9-9854-c75069019caf"/>
+				<textElement>
+					<font size="10" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[N°.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="62" width="127" height="20" uuid="46b7767f-214c-4046-933d-9b558328dba3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Capiatá - Paraguay]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="152" y="62" width="104" height="20" uuid="1d6c6af0-a7be-4c1e-abb2-1a608d73aa58"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Fecha:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="466" y="11" width="28" height="20" uuid="edeaa04c-957b-4b92-a476-987f87eba03f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gs.]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="494" y="11" width="156" height="31" backcolor="#CCCCCC" uuid="5821c233-fb9f-4e77-ab88-2e7338281d80"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="14" y="94" width="67" height="20" uuid="8ef953ca-6503-45f0-bfb3-da74a1e22763"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Vencimiento:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="34" y="11" width="100" height="20" uuid="6b515c65-7416-4ba4-bfc4-df5931dab725"/>
+				<textFieldExpression><![CDATA[$F{idpagare}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="11" width="150" height="31" uuid="2279ad1b-4d95-40c8-a88b-d43eded661a6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{monto_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="86" y="94" width="137" height="20" uuid="55bd926e-b0b5-4b08-b7d1-71477f5120d0"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{vencimiento_cuota}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="205" y="62" width="135" height="20" uuid="e29b9604-f6e1-48d3-8e68-bf3d49ac1102"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="42" width="127" height="20" uuid="1ed84a5e-0738-4feb-a673-6d08b665d6f8"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Celular:  0987-321.533]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="483" splitType="Stretch">
+			<staticText>
+				<reportElement x="12" y="0" width="651" height="20" uuid="77d955eb-6551-43bb-ac54-5cf9a2a24fb0"/>
+				<textElement>
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Pagaré(mos) a la orden de "Electrohouse Casa de Electrodomésticos - RUC. 80073178 6 - Ruta 2 - Km 20 - Capiatá]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="30" width="136" height="20" uuid="5c4615b0-6980-46d6-bd0e-91f2a256ae9a"/>
+				<textElement>
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[a cantidad de guaranies]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="167" y="20" width="483" height="30" backcolor="#CCCCCC" uuid="3d66c2aa-5aa1-4b80-8223-16b2856b204f"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="12" y="72" width="226" height="20" uuid="8dee340c-1391-4125-8bd4-8b88fbe8f0f2"/>
+				<textElement>
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[correspondiente a una cuota del Importe]]></text>
+			</staticText>
+			<line>
+				<reportElement x="234" y="92" width="416" height="1" uuid="d880a527-1681-4060-9ba0-e6597686a500"/>
+			</line>
+			<staticText>
+				<reportElement x="14" y="108" width="635" height="20" uuid="a0b2cb35-e9c7-4962-b5cb-3846caf890c9"/>
+				<text><![CDATA[Queda expresamente convenido que la falta de pago de 2 cuotas, pagarés, consecutivas producirá la caducidad de los plazos de los]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="128" width="635" height="20" uuid="efe66ebb-f4e3-4e23-bb40-d3aaef551024"/>
+				<text><![CDATA[demás documentos. Si por cualquier circunstancia no fuere abonado éste documento a su vencimiento devengará durante el tiempo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="163" width="635" height="20" uuid="a30e9491-58a0-48e6-b3a1-ef8b620db8c7"/>
+				<text><![CDATA[plazo de la obligación. El simple vencimiento implicará la mora sin necesidad de notificación judicial o extrajudicial alguna a los]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="183" width="603" height="20" uuid="b9c76493-13e0-4da2-ada9-c22cc1238074"/>
+				<text><![CDATA[efectos legales y procesales se acepta la ompetencia de los Tribunales corespondientes.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="203" width="635" height="20" uuid="e55d2a87-b584-4eb2-876f-7180a3837cbe"/>
+				<text><![CDATA[En caso de atraso mayor a 90 días en el pago de mi compromiso asumido, autorizo a incluir mi nombre en la base de datos de datos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="326" width="72" height="20" uuid="2a62e9f6-a142-4e52-bbab-920e03d8e065"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="398" width="60" height="20" uuid="0e22bf93-bfbb-4538-b266-1a9ef92d1de4"/>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="406" y="326" width="26" height="20" uuid="d259cae8-1315-47df-89f8-fd53d09268fc"/>
+				<text><![CDATA[C.I.:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="62" y="347" width="335" height="1" uuid="23319c53-1678-4f40-858c-657403aab0e1"/>
+			</line>
+			<line>
+				<reportElement x="70" y="411" width="327" height="1" uuid="5d1aa569-d71a-462c-97dd-8939a708faf6"/>
+			</line>
+			<line>
+				<reportElement x="433" y="345" width="219" height="1" uuid="87870c73-0217-4e4f-8779-d5553a54bf31"/>
+			</line>
+			<line>
+				<reportElement x="52" y="295" width="207" height="1" uuid="944cccde-9a8d-4779-8b3b-ed5be4768778"/>
+			</line>
+			<staticText>
+				<reportElement x="115" y="296" width="90" height="20" uuid="91c2d9f5-2237-4540-acd1-3ad232472258"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FIrma Deudor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="148" width="635" height="15" uuid="ea2099b3-6ab7-4f99-84b9-7a3a7ff178cf"/>
+				<text><![CDATA[de la mora el interés de .....% mensual y el interés punitorio de .....% mensual por simple retardo, sin que esto implique prórroga de]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="185" y="20" width="465" height="30" uuid="9a23fad8-fdce-4e21-84c3-9388bd318c86"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{montoenletras}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="326" width="202" height="20" uuid="b7b3d8d9-5421-49b3-9b4c-4a29cf09730b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="76" y="391" width="194" height="20" uuid="3f9ef296-3fdb-44cd-9e5c-fd4ac3552a91"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{direccion_cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="443" y="326" width="210" height="20" uuid="391dd6e2-0ef3-40b4-a7eb-2ce9ae57572a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ruc_cliente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="223" width="603" height="20" uuid="326e6b14-cc66-4e87-a1eb-06090ce49ece"/>
+				<text><![CDATA[de Informes Comerciales conforme a lo establecido en la Ley 1682 y su modif. Ley 1969.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="256" y="73" width="13" height="20" uuid="fc7d88af-58f5-400d-9b1a-d9e70f4b4988"/>
+				<textElement>
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[1]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="282" y="73" width="368" height="20" uuid="3e29f939-c31c-435e-b318-0d172f4f1356"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre_producto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="469" y="296" width="115" height="20" uuid="f1f5f06b-09e3-475a-9be9-2e9806fb3b81"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Deudor Solidario]]></text>
+			</staticText>
+			<line>
+				<reportElement x="406" y="295" width="207" height="1" uuid="404be366-a6a3-496b-9560-601605917293"/>
+			</line>
+			<staticText>
+				<reportElement x="19" y="359" width="106" height="20" uuid="a68557aa-a19f-4360-9326-a1ace0d61d67"/>
+				<text><![CDATA[Nombre del Cónyuge:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="121" y="378" width="276" height="1" uuid="f7e4362d-8382-4ac0-8b09-9366a1b326de"/>
+			</line>
+			<staticText>
+				<reportElement x="19" y="429" width="151" height="20" uuid="e190b137-48f9-4bfa-a916-c514e9b766d7"/>
+				<text><![CDATA[Nombre del Deudor Solidario:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="157" y="446" width="240" height="1" uuid="b8e94402-1167-4cde-ab25-f3ed73cb1cb5"/>
+			</line>
+			<line>
+				<reportElement x="71" y="472" width="326" height="1" uuid="5ab97975-8136-4c7c-b708-6a887435e044"/>
+			</line>
+			<staticText>
+				<reportElement x="19" y="459" width="60" height="20" uuid="c7e7df77-ff3e-44b6-9152-73d24042e240"/>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="407" y="358" width="26" height="20" uuid="91d76fb1-e58f-4629-8c09-c0eb6d8b5621"/>
+				<text><![CDATA[C.I.:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="434" y="377" width="219" height="1" uuid="cbb3a266-429f-46aa-89bb-0793fcdac251"/>
+			</line>
+			<staticText>
+				<reportElement x="406" y="391" width="26" height="20" uuid="918c8b19-45c5-43c9-834d-8d54ade7118c"/>
+				<text><![CDATA[Tel.:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="435" y="410" width="219" height="1" uuid="6b5dbf2f-da4d-4717-bcad-ffe6185ea8f3"/>
+			</line>
+			<staticText>
+				<reportElement x="406" y="429" width="26" height="20" uuid="94207762-727c-4a02-98bd-bb2e9841d623"/>
+				<text><![CDATA[C.I.:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="436" y="447" width="219" height="1" uuid="46fd4951-6a6d-4455-a800-45749ff57d43"/>
+			</line>
+			<staticText>
+				<reportElement x="406" y="453" width="26" height="20" uuid="c86d5644-2a6f-4960-8d25-c120b01d3d1f"/>
+				<text><![CDATA[Tel.:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="433" y="471" width="220" height="1" uuid="29e0760a-e087-4ece-a423-218b63b148f4"/>
+			</line>
+			<textField>
+				<reportElement x="443" y="390" width="209" height="20" uuid="b12b2ad2-2971-4c4d-8404-134d68f5b54d"/>
+				<textFieldExpression><![CDATA[$F{telefono_cliente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

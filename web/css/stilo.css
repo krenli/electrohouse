@@ -1,0 +1,159 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28.10.2018, 18:49:26
+    Author     : Karen
+*/
+.borde{
+    text-align: center;
+    border-bottom:  crimson;
+    border-bottom-style:  solid;
+    border-bottom-width: 1px;
+}
+.margentop {
+    margin-top: 10px;
+}
+.pie{
+    position: relative;
+
+    background:  gray;
+    clear: both;
+
+
+}
+.parrafo{
+    color:  white;
+    margin: 0;
+    text-align:  right;
+    margin-right: 8px;
+}
+
+.letra{
+  font-size: 1.75rem;
+font-family:  Helvetica;
+    color: red;
+}
+.subletra{
+    font-size: 4rem;
+    font-family: cursive;
+    
+    background-color: #00ffff;
+    
+}
+.bordefinito{
+    border-top-style: solid;
+    margin-bottom: 0px;
+    border-top-width: 1px;
+    border-color: red;
+}
+
+
+.bordeabajo{
+    text-align: center;
+    bottom-color: green;
+    border-bottom-style: solid;
+    
+}
+.paddintexto{
+    padding-top: 20px;
+}
+.texto{
+    margin: 0px;
+    text-emphasis:  #ffffff;
+    color:  #ff0;
+    
+}
+@media screen and (max-width:640px) {
+    .tamav{
+        width: 250px;
+        height: 200px;
+    }
+    
+    /* reglas CSS */
+}
+@media screen and (max-width:1024px) and (min-width:640px) {
+    .tamav{
+        width: 800px;
+        height: 600px;
+    }
+    /* reglas CSS */
+}
+@media screen and (min-width:1024px) {
+    .tamav{
+        width: 800px;
+        height: 500px;
+    }
+    /* reglas CSS */
+}
+.centrado{
+    text-align: center;
+     
+}
+.contenido{
+    width: 90%;
+    background: #0AFF12;
+
+}
+.menu{
+   
+    margin-bottom: 5px;
+
+}
+.texto{
+    margin: 0px;
+    text-emphasis: #ffffff;
+    color: #ff3333;
+    
+}
+.paddintexto{
+    padding-top: 20px;
+}
+
+.cuerpo{
+    position: relative;
+    background:  deeppink;
+    text-align: center;
+    margin-top: 5px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+.bloque{
+    position:  relative;
+    width: 33%;
+    height: 600px;
+    float: left;
+    background:  #f5e79e;
+    margin-left: 2px;
+
+
+    margin-bottom: 5px;
+
+}
+.pie{
+    position: relative;
+
+    background:  #080808;
+    clear: both;
+
+
+}
+.bloque6{
+    background:  #ff0;
+
+    height: 99px;
+}
+.parrafo{
+    color:  #ff0;
+    margin: 0;
+    text-align:  right;
+    margin-right: 8px;
+}
+.pp{
+    margin-bottom: 1px;
+    margin-top: 1px;
+}
+
+

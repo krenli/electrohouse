@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Electrohouse | COMPRAS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" >
+        <link rel="icon" type="image/gif" href="../../../img/4.jpg" >
+        <link href="../../../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../css/miestilos.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+     <body style="background-image: url('../../../img/electro.jpg'); width: 100%;height: 100px; background-repeat:  no-repeat">
+        <div id="confirmar"></div>
+        <div id="buscar"></div>
+     <center>
+         <br>
+        <div id="panelLinea" class="panel panel-primary" style="background: #cccccc">
+            <h1 class="panel-heading centrado">COMPRAS | Detalle</h1>
+            <div class="panel-body">
+                <form id="formLinea">
+
+                    <div class="row">
+                        <div class="col-md-1">
+                            <span>Id Linea</span>
+                        </div>
+                        <div class="col-md-1">
+                            <input id="idfactura_detalle_compra" name="idfactura_detalle_compra" type="text" class="form-control input-sm" placeholder="Id" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <span>Producto</span>
+                        </div>
+                        <div class="col-md-1">
+                            <input id="idproducto" name="idproducto" type="text" class="form-control input-sm" placeholder="Id" onkeypress="return SoloNumeros(event)">
+                        </div>
+
+                        <div class="col-md-1">
+                            <button id="botonBuscarIdProducto" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                        <div class="col-md-4">
+                            <input id="nombre_producto" name="nombre_producto" type="text" class="form-control input-sm" placeholder="Nombre Producto" readonly="readonly">
+                        </div>
+                        
+                        <div class="col-md-1">
+                                <span>Precio</span>
+                            </div>
+                            <div class="col-md-4">
+                                <input id="costo_producto" name="costo_producto" type="text" class="form-control input-sm" placeholder="Precio de compra" disabled="disabled">
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <span>Cantidad</span>
+                        </div>
+                        <div class="col-md-1">
+                            <input id="cantidad_compra" name="cantidad_compra" type="text" class="form-control input-sm derecha" placeholder="Cantidad" onkeypress="return SoloNumeros(event)">
+                        </div>
+                    </div>
+                    
+                    <!--<div class="row">
+                        <div class="col-md-1">
+                            <span>Subtotal</span>
+                        </div>
+                        <div class="col-md-1">
+                            <input id="subtotal_compra" name="subtotal_compra" type="text" class="form-control input-sm derecha" placeholder="subtotal">
+                        </div>
+                    </div>-->
+                </form>
+            </div>
+            <div class="panel-footer centrado">
+                <button id="botonAgregarLinea" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-saved"></span>Agregar</button>
+                <button id="botonModificarLinea" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span>Modificar</button>
+                <button id="botonEliminarLinea" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#confirmarEliminarLinea"><span class="glyphicon glyphicon-trash"></span>Eliminar</button>
+                <button id="botonSalirLinea" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-share-alt"></span>Salir</button>
+            </div>
+        </div>
+         <br>
+        <div id="panelPrograma" class="panel panel-primary" style="background: #cccccc">
+            <h1 class="panel-heading centrado">Compras | <span id="snombre_empresa"></span> | <span id="slogin_usuario"></span></h1>
+            <div class="panel-body">
+                <form id="formPrograma">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <span>Id</span>
+                        </div>
+                        <div class="col-md-1">
+                            <input id="idfactura_compra" name="idfactura_compra" type="text" class="form-control input-sm" placeholder="Id" onkeypress="return SoloNumeros(event)">
+                        </div>
+                        <div class="col-md-1">
+                            <button id="botonBuscarIdFacturaCompra" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-1">
+                            <span>Fecha Factura</span>
+                        </div>
+                        <div class="col-md-3">
+                            <input id="fecha_factura_compra" name="fecha_factura_compra" type="Date" class="form-control input-sm" >
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-1">
+                            <span>Proveedor</span>
+                        </div>
+                        <div class="col-md-1">
+                            <input id="idproveedor" name="idproveedor" type="text" class="form-control input-sm" placeholder="Id" onkeypress="return SoloNumeros(event)">
+                        </div>
+                        <div class="col-md-1">
+                            <button id="botonBuscarIdProveedor" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+
+                        <div class="col-md-3">
+                            <input id="nombre_proveedor" name="nombre_proveedor" type="text" class="form-control input-sm" placeholder="Nombre Proveedor" disabled="disabled">
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <input id="ruc_proveedor" name="ruc_proveedor" type="text" class="form-control input-sm" placeholder="RUC" disabled="disabled">
+                        </div>
+                        <span>Nuevo Proveedor: </span>
+                                 <button id="botonAgregarProveedor" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span></button>
+                        <div class="col-md-3">
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <span>Tipo Factura</span>
+                        </div>
+                        <div class="col-md-1">
+                            <input id="idtipo_factura" name="idtipo_factura" type="text"
+                                   class="form-control imput-sm" placeholder="Id" onkeypress="return SoloNumeros(event)">
+                        </div>
+                        <div class="col-md-1">
+                            <button id="botonBuscarIdTipo_factura" type="button" class="btn btn-primary btn-sm"><span
+                                    class="glyphicon glyphicon-search"></span></button>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <input id="nombre_tipo_factura" name="nombre_tipo_factura" type="text" class="form-control input-sm" placeholder="Nombre" disabled="disabled">
+                        </div>
+
+                        <div class="col-md-6">   
+                        </div>
+                    </div>
+                </form>
+                <div id="detalle" hidden="">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Producto</th>
+                                <th>Nombre</th>
+                                <th class="centrado">Costo</th>
+                                <th class="centrado">Cantidad</th>
+                                <!--<th class="centrado">Precio</th>-->
+                                <th class="centrado">Subtotal</th>
+                                <th>Exenta</th>
+                                <th>Gravada 5%</th>
+                                <th>Gravada 10%</th>
+                                <th class="centrado"><button onclick="agregarLinea()" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span></button></th>
+                            </tr>
+                        </thead>
+                        <tbody id="contenidoDetalle">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel-footer centrado">
+                <button id="botonAgregar" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-saved"></span>Agregar</button>
+                <button id="botonModificar" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span>Modificar</button>
+                <button id="botonEliminar" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#confirmarEliminar"><span class="glyphicon glyphicon-trash"></span>Eliminar</button>
+                <button id="botonSalir" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-share-alt"></span>Salir</button>
+            </div>
+        </div>
+        <div id="mensajes" class="well well-sm centrado">Mensajes del Sistema.</div>
+        <div class="modal fade" id="confirmarEliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header  centrado">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Mensaje del Sistema</h4>
+                    </div>
+                    <div class="modal-body">
+                        Está seguro de eliminar estos datos?
+                    </div>
+                    <div class="modal-footer centrado">
+                        <button id="botonEliminarAlert" type="button" class="btn btn-primary btn-sm">Eliminar</button>
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="confirmarEliminarLinea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header  centrado">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabelLinea">Mensaje del Sistema</h4>
+                    </div>
+                    <div class="modal-body">
+                        Está seguro de eliminar esta linea?
+                    </div>
+                    <div class="modal-footer centrado">
+                        <button id="botonEliminarAlertLinea" type="button" class="btn btn-primary btn-sm">Eliminar</button>
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </center>
+        <script src="../../../js/jquery.min.js" type="text/javascript"></script>
+        <script src="../../../js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../../js/funciones.js" type="text/javascript"></script> 
+        <script src="js/funciones.js" type="text/javascript"></script>
+        <script>
+        verificarSesion(true);
+        $("#buscar").css("display", "none");
+        $("#panelLinea").css("display", "none");
+        $("#idfactura_compra").focus();
+
+        siguienteCampo("#idfactura_compra", "#idproveedor", false);
+
+        siguienteCampo("#idproducto", "#cantidad_compra", false);
+
+        if ($("#idfactura_compra").val() === "0") {
+            siguienteCampo("#idproveedor", "#botonAgregar", false);
+
+        } else {
+
+            siguienteCampo("#idproveedor", "#botonModificar", false);
+        }
+
+        $("#idfactura_compra").focusout(function (event) {
+            if ($("#idfactura_compra").val() === "") {
+                $("#idfactura_compra").val("0");
+            }
+           buscarIdFacturaCompra();
+           var id = $("#idfactura_compra").val();
+        $("#idfactura_compra").val("0");
+           var img = "<img src='../../../img/compras/" + id + ".jpg' alt=''>";
+            $("#foto").html(img);
+
+        });
+        $("#idproveedor").focusout(function (event) {
+            if ($("#idproveedor").val() === "") {
+                $("#idproveedor").val("0");
+            }
+                    buscarIdProveedor();
+        });
+         $("#idproducto").focusout(function (event) {
+            if ($("#idproducto").val() === "") {
+                $("#idproducto").val("0");
+            }
+                buscarIdProducto();
+          });
+         $("#botonBuscarIdFacturaCompra").on('click', function () {
+            $("#buscar").load("buscar.html");
+            $("#buscar").fadeIn("slow");
+            $("#panelPrograma").fadeOut("slow");
+          });
+         $("#botonBuscarIdProveedor").on('click', function () {
+            $("#buscar").load("buscarProveedor.html");
+            $("#buscar").fadeIn("slow");
+            $("#panelPrograma").fadeOut("slow");
+          });
+         $("#botonBuscarIdProducto").on('click', function () {
+            $("#buscar").load("buscarProducto.html");
+            $("#buscar").fadeIn("slow");
+            $("#panelLinea").fadeOut("slow");
+          });
+
+          $("#idtipo_factura").focusout(function (event) {
+            if ($("#idtipo_factura").val() === "") {
+                $("#idtipo_factura").val("0");
+          }
+                buscarIdTipo_factura();
+          });
+          $("#botonBuscarIdTipo_factura").on('click', function () {
+                $("#buscar").load("buscarTipoFactura.html");
+                $("#buscar").fadeIn("slow");
+                $("#panelPrograma").fadeOut("slow");
+           });
+           
+           $("#cantidad_compra").focusout(function (event) {
+            if ($("#cantidad_compra").val() !== "" && $("#costo_producto").val() !== "") {
+                subtotal(this);
+                
+            }
+                    
+        });
+
+            $("#botonAgregar").on('click', function () {
+                if (validarFormulario()){
+                agregarFacturaCompra();
+                }
+            });
+            $("#botonModificar").on('click', function () {
+                if (validarFormulario()){
+                modificarFacturaCompra();
+                }
+            });
+            $("#botonEliminarAlert").on('click', function () {
+                eliminarFacturaCompra();
+                $('#confirmarEliminar').modal('hide');
+            });
+            $("#botonSalir").on('click', function () {
+                location.href = "../../../menu.html";
+             });
+
+            $("#botonAgregarLinea").on('click', function () {
+
+                agregarFacturaDetalle();
+
+            });
+            $("#botonModificarLinea").on('click', function () {
+
+                modificarFacturaDetalle();
+
+
+            });
+            $("#botonEliminarAlertLinea").on('click', function () {
+                eliminarFacturaDetalle();
+                $('#confirmarEliminarLinea').modal('hide');
+            });
+            $("#botonSalirLinea").on('click', function () {
+            $("#panelLinea").fadeOut("slow");
+            $("#panelPrograma").fadeIn("slow");
+            });
+            $("#botonAgregarProveedor").on('click', function () {
+                                   
+               window.open(href = "../../referenciales/proveedores/index.html", "nuevo", "directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=650, height=750");
+
+             });
+        </script>
+    </body>
+</html>

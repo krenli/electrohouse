@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+      <title>Electrohouse | Timbrados</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut  icon" href="favicon.ico" >
+        <link rel="icon" type="image/gif" href="../../../img/4.jpg" >
+        <link href="../../../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../css/miestilos.css" rel="stylesheet" type="text/css"/>
+    </head>
+   <body style="background-image: url('../../../img/electro.jpg'); width: 100%;height: 100px; background-repeat:  no-repeat">
+         <div id="subir">
+            <center> <h1 class="panel-heading centrado text-info"> TIMBRADOS | <span
+                    id="snombre_empresa"></span> | <span
+                    id="slogin_usuario"></span></h1>
+               
+           
+        </div>
+ 
+        
+        <div id="confirmar"></div>
+        <div id="buscar"></div>
+     <center>
+        <div id="panelPrograma" class="panel panel-primary" style="background: #cccccc">
+         <!--<div class="panel-heading centrado"> Timbrados | <span
+                    id="snombre_empresa"></span> | <span
+                    id="slogin_usuario"></span></div>-->
+                    <div class="panel-body">
+                        <form id="formPrograma">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <span>Id</span>
+                                </div>
+                                <div class="col-md-1">
+                                    <input id="idtimbrado" name="idtimbrado" type="text"
+                                           class="form-control imput-sm" placeholder="Id" onkeypress="return SoloNumeros(event)">
+                                </div>
+                                <div class="col-md-1">
+                                    <button id="botonBuscarIdTimbrado" type="button" class="btn btn-primary btn-sm"><span
+                                            class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                                <div class="col-md-9">   
+                            </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                <span>Numero</span>
+                            </div>
+                            <div class="col-md-11">
+                                <input id="numero_timbrado" name="numero_timbrado" type="text" class="form-control input-sm" placeholder="Nª" onkeyup="this.value = this.value.toUpperCase()">
+                            </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                <span>Fecha Inicio</span>
+                            </div>
+                            <div class="col-md-11">
+                                <input id="fecha_inicio_timbrado" name="fecha_inicio_timbrado" type="date" class="form-control input-sm">
+                            </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                <span>Fecha Vencimiento</span>
+                            </div>
+                            <div class="col-md-11">
+                                <input id="fecha_vencimiento_timbrado" name="fecha_vencimiento_timbrado" type="date" class="form-control input-sm">
+                            </div>
+                            </div>
+                            <!--div class="row">
+                                <div class="col-md-1">
+                                <span>Fecha Actual</span>
+                            </div>
+                            <div class="col-md-11">
+                                <input id="fecha_actual_timbrado" name="fecha_actual_timbrado" type="date" class="form-control input-sm">
+                            </div>
+                            </div-->
+                            
+                            <div class="row">
+                                <div class="col-md-1">
+                                <span>Desde</span>
+                            </div>
+                            <div class="col-md-11">
+                                <input id="desde_timbrado" name="desde_timbrado" type="text" class="form-control input-sm" placeholder="Desde">
+                            </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-1">
+                                <span>Hasta</span>
+                            </div>
+                            <div class="col-md-11">
+                                <input id="hasta_timbrado" name="hasta_timbrado" type="text" class="form-control input-sm" placeholder="Hasta">
+                            </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-1">
+                                <span>Estado</span>
+                            </div>
+                            <div class="col-md-11">
+                                <input id="estado_timbrado" name="estado_timbrado" type="text" class="form-control input-sm" placeholder="Estado" onkeyup="this.value = this.value.toUpperCase()">
+                            </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <span>Id Tipo Personal</span>
+                                </div>
+                                <div class="col-md-1">
+                                    <input id="idtipo_personal" name="idtipo_personal" type="text"
+                                           class="form-control imput-sm" placeholder="Id">
+                                </div>
+                                <div class="col-md-1">
+                                    <button id="botonBuscarIdTipo_personal" type="button" class="btn btn-primary btn-sm"><span
+                                            class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                                
+                            
+                                <div class="col-md-1">
+                                <span>Nombre Tipo Personal</span>
+                            </div>
+                            <div class="col-md-2">
+                                <input id="nombre_tipo_personal" name="nombre_tipo_personal" type="text" class="form-control input-sm" placeholder="Nombre" onkeyup="this.value = this.value.toUpperCase()">
+                            </div>
+                                
+                                <div class="col-md-6">   
+                            </div>
+                                
+                            </div>
+                            <br>
+                        </form>
+                    
+            <div class="panel-footer centrado">
+                <button id="botonAgregar" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-saved"></span>Agregar</button>
+                <button id="botonModificar" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span>Modificar</button>
+                <button id="BotonEliminar" type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                        data-target="#confirmarEliminar"><span class="glyphicon glyphicon-trash"></span>Eliminar</button>
+                 <button id="botonCancelar" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+                <button id="botonSalir" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-share-alt"></span>Salir</button>
+            </div>
+        </div>
+        <div id="mensajes" class="well well-sm centrado">Mensaje del Sistema.</div>
+        <div class="modal fade" id="confirmarEliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header centrado">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">
+                                &times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Mensaje del Sistema</h4>
+                    </div>
+                    <div class="modal-footer centrado">
+                        <button id="botonEliminarAlert" type="button" class="btn btn-primary btn-sm">Eliminar</button>
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </center>
+        <script src="../../../js/jquery.min.js" type="text/javascript"></script>
+        <script src="../../../js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../../js/funciones.js" type="text/javascript"></script>
+        <script src="js/funciones.js" type="text/javascript"></script>
+    <script>
+        verificarSesion(true);
+        $("#buscar").css("display", "none");
+        //$("#id_timbrado").focus();
+        //siguientecampo("#id_timbrado", "#numero_timbrado", false);
+        $("#idtimbrado").focusout(function (event) {
+            if ($("#idtimbrado").val() === "") {
+                $("#idtimbrado").val("0");
+            }
+            buscarIdTimbrado();
+        });
+        $("#botonBuscarIdTimbrado").on('click', function () {
+           $("#buscar").load("buscar.html");
+           $("#buscar").fadeIn("slow");
+           $("#panelPrograma").fadeOut("slow");
+        });
+        
+        $("#numero_timbrado").focusout(function (event) {
+            if ($("#numero_timbrado").val() !== "") {
+                buscarTimbrado();
+            }
+            
+        });
+        
+        $("#idtipo_personal").focusout(function (event) {
+            if ($("#idtipo_personal").val() === "") {
+                $("#idtipo_personal").val("0");
+            }
+            buscarIdTipo_personal();
+        });
+        $("#botonBuscarIdTipo_personal").on('click', function () {
+           $("#buscar").load("buscarTipo_personal.html");
+           $("#buscar").fadeIn("slow");
+           $("#panelPrograma").fadeOut("slow");
+        });
+        
+        
+        $("#botonAgregar").on('click', function () {
+          if (validarFormulario()) {
+              agregarTimbrado();
+          }  
+        });
+        $("#botonModificar").on('click', function () {
+         if(validarFormulario()) {
+             modificarTimbrado();
+         }   
+        });
+        $("#botonEliminarAlert").on('click', function () {
+           eliminarTimbrado();
+           $('#confirmarEliminar').modal('hide');
+        });
+        $("#botonSalir").on('click', function () {
+            location.href = "../../../menu.html";
+        });
+        
+    </script>
+    </body>
+</html>

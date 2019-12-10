@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteProveedores" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b57dc869-e0fd-4db2-a478-6289c638fb54">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="USER" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="desde_id" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="hasta_id" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     *,
+     proveedores."idproveedor" AS proveedores_idproveedor,
+     proveedores."nombre_proveedor" AS proveedores_nombre_proveedor,
+     proveedores."ruc_proveedor" AS proveedores_ruc_proveedor,
+     proveedores."telefono_proveedor" AS proveedores_telefono_proveedor,
+     proveedores."direccion_proveedor" AS proveedores_direccion_proveedor,
+     proveedores."email_proveedor" AS proveedores_email_proveedor,
+     proveedores."idciudad" AS proveedores_idciudad,
+     usuarios."idusuario" AS usuarios_idusuario,
+     usuarios."login_usuario" AS usuarios_login_usuario,
+     usuarios."nombre_usuario" AS usuarios_nombre_usuario,
+     usuarios."clave_usuario" AS usuarios_clave_usuario,
+     usuarios."idrol" AS usuarios_idrol,
+     ciudades."idciudad" AS ciudades_idciudad,
+     ciudades."nombre_ciudad" AS ciudades_nombre_ciudad
+FROM
+     "public"."ciudades" ciudades INNER JOIN "public"."proveedores" proveedores ON ciudades."idciudad" = proveedores."idciudad",
+     "public"."usuarios" usuarios
+WHERE
+     idproveedor BETWEEN $P{desde_id} and $P{hasta_id}]]>
+	</queryString>
+	<field name="idciudad" class="java.lang.Integer"/>
+	<field name="nombre_ciudad" class="java.lang.String"/>
+	<field name="idproveedor" class="java.lang.Integer"/>
+	<field name="nombre_proveedor" class="java.lang.String"/>
+	<field name="ruc_proveedor" class="java.lang.String"/>
+	<field name="telefono_proveedor" class="java.lang.String"/>
+	<field name="direccion_proveedor" class="java.lang.String"/>
+	<field name="email_proveedor" class="java.lang.String"/>
+	<field name="idusuario" class="java.lang.Integer"/>
+	<field name="login_usuario" class="java.lang.String"/>
+	<field name="nombre_usuario" class="java.lang.String"/>
+	<field name="clave_usuario" class="java.lang.String"/>
+	<field name="idrol" class="java.lang.Integer"/>
+	<field name="proveedores_idproveedor" class="java.lang.Integer"/>
+	<field name="proveedores_nombre_proveedor" class="java.lang.String"/>
+	<field name="proveedores_ruc_proveedor" class="java.lang.String"/>
+	<field name="proveedores_telefono_proveedor" class="java.lang.String"/>
+	<field name="proveedores_direccion_proveedor" class="java.lang.String"/>
+	<field name="proveedores_email_proveedor" class="java.lang.String"/>
+	<field name="proveedores_idciudad" class="java.lang.Integer"/>
+	<field name="usuarios_idusuario" class="java.lang.Integer"/>
+	<field name="usuarios_login_usuario" class="java.lang.String"/>
+	<field name="usuarios_nombre_usuario" class="java.lang.String"/>
+	<field name="usuarios_clave_usuario" class="java.lang.String"/>
+	<field name="usuarios_idrol" class="java.lang.Integer"/>
+	<field name="ciudades_idciudad" class="java.lang.Integer"/>
+	<field name="ciudades_nombre_ciudad" class="java.lang.String"/>
+	<title>
+		<band height="98" splitType="Stretch">
+			<staticText>
+				<reportElement x="202" y="40" width="140" height="20" uuid="6648b93c-81fa-46ac-a20f-b71f4830184f"/>
+				<text><![CDATA[CAPIATÁ - PARAGUAY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="213" y="59" width="100" height="20" uuid="6ed130c3-69db-46d8-98f3-93d0bc351dfb"/>
+				<text><![CDATA[Cel.: 0987-321.533]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="119" y="0" width="330" height="20" forecolor="#000099" uuid="854c8e30-e17f-410c-9c5e-443b2971e3ac"/>
+				<textElement>
+					<font fontName="Serif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ELECTRO HOUSE - ELECTRODOMÉSTICOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="154" y="20" width="256" height="20" uuid="b19df333-28cf-4ba7-953d-335d57471c8e"/>
+				<text><![CDATA[Avenida Pedro López Godoy casi Petirossi]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="119" height="95" uuid="094360d0-5508-43ae-a61f-3df69c9aa785"/>
+				<imageExpression><![CDATA[".\\electrohouse.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="0" y="95" width="555" height="1" forecolor="#000066" uuid="aeb6aa5e-92ff-43ac-9daf-b169123b246c"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="172" y="0" width="210" height="20" uuid="03785f0d-5198-475f-805d-42795d3c084e"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NÓMINA DE PROVEEDORES]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="307" y="0" width="75" height="20" backcolor="#666666" uuid="800f1610-20ec-4445-8748-93bda5a8bcff"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Black" isBold="false"/>
+				</textElement>
+				<text><![CDATA[DIRECCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="54" height="20" backcolor="#999999" uuid="1a3ad9f5-9ae2-427d-8abe-d7b6887dae80"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Black" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="154" y="0" width="73" height="20" backcolor="#999999" uuid="06f871a3-c698-4edf-99de-13ada7d54897"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Black" isBold="false"/>
+				</textElement>
+				<text><![CDATA[RUC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="382" y="0" width="90" height="20" backcolor="#999999" uuid="ba3f9b9b-18ae-486c-a2f4-eaaa6cd82ac3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Black" isBold="false"/>
+				</textElement>
+				<text><![CDATA[EMAIL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="472" y="0" width="82" height="20" backcolor="#666666" uuid="2fdd82ce-d025-45c1-86d4-3b4d3b3db0fa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Black" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CIUDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="54" y="0" width="100" height="20" backcolor="#999999" uuid="b0cf4438-b503-45ab-97bc-51b38827f0ec"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Black" isBold="false"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="0" width="80" height="20" backcolor="#999999" uuid="37cc36a6-2994-45fa-9959-f50000d4d4dc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Black" isBold="false"/>
+				</textElement>
+				<text><![CDATA[TELÉFONO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="0" width="52" height="20" uuid="550ca6f1-9fbe-4662-8688-80e25e12984c"/>
+				<textFieldExpression><![CDATA[$F{proveedores_idproveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="54" y="0" width="100" height="20" uuid="0b610ca8-eeb6-401a-ae50-5395d7b69444"/>
+				<textFieldExpression><![CDATA[$F{proveedores_nombre_proveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="154" y="0" width="73" height="20" uuid="df927ef5-4991-4aee-9832-c615e65b794c"/>
+				<textFieldExpression><![CDATA[$F{proveedores_ruc_proveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="227" y="0" width="80" height="20" uuid="585cf6c7-de37-4277-aab4-efce44232938"/>
+				<textFieldExpression><![CDATA[$F{proveedores_telefono_proveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="307" y="0" width="75" height="20" uuid="651b5ef5-6bca-4c97-8f2b-7b717fa2f68f"/>
+				<textFieldExpression><![CDATA[$F{proveedores_direccion_proveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="382" y="0" width="90" height="20" uuid="61966bac-9d77-4c23-9a4e-890a53471b25"/>
+				<textFieldExpression><![CDATA[$F{proveedores_email_proveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="472" y="0" width="83" height="20" uuid="529cdefe-6739-4df5-ab29-b416264418b1"/>
+				<textFieldExpression><![CDATA[$F{ciudades_nombre_ciudad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="49" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="0" width="71" height="20" uuid="42c134b4-89d7-4280-8e91-bbf0cac0761f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial Black" isBold="true"/>
+				</textElement>
+				<text><![CDATA[USUARIO:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="83" y="20" width="100" height="20" uuid="6113b89e-4562-4568-89c9-959077c31572"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="83" y="0" width="100" height="20" uuid="5f7910c2-7097-442e-aded-035423afe725"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{usuarios_nombre_usuario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="20" width="71" height="20" backcolor="#666666" uuid="ff7e379d-5cde-45e5-a4c4-e7a4d8fac565"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial Black" isBold="false"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="435" y="20" width="80" height="20" uuid="c41193d2-b8fb-45f5-ac1f-36509d857b74"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="20" width="40" height="20" uuid="ebb3d261-11ad-4a77-87e6-cce05eb35566"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>
